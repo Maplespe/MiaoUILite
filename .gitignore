@@ -30,3 +30,12 @@
 *.exe
 *.out
 *.app
+/.vs/MiaoUILite
+/DmResEditor/Cache/Debug64
+/bin/Test/Debug64/MiaoUITest.pdb
+/bin/Test/Release64
+/bin/DmResEditor/Debug64
+/MiaoUI/Cache
+/MiaoUI/library
+/MiaoUITest/Cache
+/packages
