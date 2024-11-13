@@ -1,0 +1,2 @@
+picosha2 - MIT
+pugixml - MIT

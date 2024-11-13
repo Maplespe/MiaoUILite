@@ -1,0 +1,32 @@
+通过AddGeometryStyle创建UIStyle时 需要提供的XML格式
+
+每个part部分代表一个控件状态
+例如按钮有4个状态 第一个状态为普通第二为Hover第三为按下第四为禁用状态
+
+可用命令:
+fill_rect - 填充矩形 参数: rc、color
+fill_round - 填充圆角矩形 参数: rc、color、value
+fill_ellipse - 填充椭圆 参数: rc、color
+draw_rect - 绘制矩形边框 参数: rc、color
+draw_round - 绘制圆角矩形边框 参数: rc、color、value、width
+draw_line - 绘制一条线 参数: rc、color、width
+draw_ellipse - 绘制椭圆边框 参数: rc、color、width
+
+参数介绍:
+rc - 为相对于目标的内边距 left、top、right、bottom
+例如原始目标为 100,100,200,200 rc为2,2,2,2 最终绘制为 102,102,198,198
+可以使用l|t|r|b进行相对计算 例如 原始目标为 100,100,200,200 rc为 2,b2,2,0 最终绘制为 102, 198, 198, 200
+l=left t=top r=right b=bottom
+
+color - 为颜色RGBA值
+value - 为圆角度 float类型
+width - 为线宽度 uint类型
+
+<part>
+	<fill_rect rc="0,0,0,0" color="255,255,255,120" />
+	<fill_round rc="0,0,0,0" value="6.0" color="255,0,0,255" />
+</part>
+<part>
+	...........
+</part>
+..........

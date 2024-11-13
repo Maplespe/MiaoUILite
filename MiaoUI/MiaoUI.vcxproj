@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\VC-LTL.5.0.9\build\native\VC-LTL.props" Condition="Exists('..\packages\VC-LTL.5.0.9\build\native\VC-LTL.props')" />
+  <Import Project="..\packages\YY.NuGet.Import.Helper.1.0.0.4\build\native\YY.NuGet.Import.Helper.props" Condition="Exists('..\packages\YY.NuGet.Import.Helper.1.0.0.4\build\native\YY.NuGet.Import.Helper.props')" />
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\include\Control\Mui_Button.h" />
+    <ClInclude Include="src\include\Control\Mui_CheckBox.h" />
+    <ClInclude Include="src\include\Control\Mui_ColorPicker.h" />
+    <ClInclude Include="src\include\Control\Mui_ComBox.h" />
+    <ClInclude Include="src\include\Control\Mui_Control.h" />
+    <ClInclude Include="src\include\Control\Mui_EditBox.h" />
+    <ClInclude Include="src\include\Control\Mui_ImgBox.h" />
+    <ClInclude Include="src\include\Control\Mui_Label.h" />
+    <ClInclude Include="src\include\Control\Mui_ListBox.h" />
+    <ClInclude Include="src\include\Control\Mui_NavBar.h" />
+    <ClInclude Include="src\include\Control\Mui_Progress.h" />
+    <ClInclude Include="src\include\Control\Mui_Scroll.h" />
+    <ClInclude Include="src\include\Control\Mui_Slider.h" />
+    <ClInclude Include="src\include\FileSystem\DreamMoonRes.h" />
+    <ClInclude Include="src\include\FileSystem\Mui_FileSystem.h" />
+    <ClInclude Include="src\include\Manager\Mui_ControlMgr.h" />
+    <ClInclude Include="src\include\Manager\Mui_ResourceMgr.h" />
+    <ClInclude Include="src\include\Mui.h" />
+    <ClInclude Include="src\include\Mui_Base.h" />
+    <ClInclude Include="src\include\Mui_Config.h" />
+    <ClInclude Include="src\include\Mui_Debug.h" />
+    <ClInclude Include="src\include\Mui_DefUIStyle.h" />
+    <ClInclude Include="src\include\Mui_Error.h" />
+    <ClInclude Include="src\include\Mui_Framework.h" />
+    <ClInclude Include="src\include\Mui_Helper.h" />
+    <ClInclude Include="src\include\Mui_RAIIHelper.h" />
+    <ClInclude Include="src\include\Mui_Settings.h" />
+    <ClInclude Include="src\include\Mui_TypeDef.h" />
+    <ClInclude Include="src\include\Render\Graphs\Mui_GdipBaseObj.h" />
+    <ClInclude Include="src\include\Render\Graphs\Mui_GdipRender.h" />
+    <ClInclude Include="src\include\Render\Graphs\Mui_Render.h" />
+    <ClInclude Include="src\include\Render\Graphs\Mui_RenderDef.h" />
+    <ClInclude Include="src\include\Render\Mui_RenderMgr.h" />
+    <ClInclude Include="src\include\Render\Node\Mui_Layout.h" />
+    <ClInclude Include="src\include\Render\Node\Mui_RenderNode.h" />
+    <ClInclude Include="src\include\Render\Node\Mui_UINodeBase.h" />
+    <ClInclude Include="src\include\Mui_XML.h" />
+    <ClInclude Include="src\include\User\Mui_Engine.h" />
+    <ClInclude Include="src\include\Window\Mui_BasicWnd.h" />
+    <ClInclude Include="src\include\Window\Mui_Windows.h" />
+    <ClInclude Include="src\source\ThirdParty\aes256.h" />
+    <ClInclude Include="src\source\ThirdParty\picosha2.h" />
+    <ClInclude Include="src\source\ThirdParty\pugixml\pugiconfig.hpp" />
+    <ClInclude Include="src\source\ThirdParty\pugixml\pugixml.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\source\Control\Mui_Button.cpp" />
+    <ClCompile Include="src\source\Control\Mui_CheckBox.cpp" />
+    <ClCompile Include="src\source\Control\Mui_ColorPicker.cpp" />
+    <ClCompile Include="src\source\Control\Mui_ComBox.cpp" />
+    <ClCompile Include="src\source\Control\Mui_Control.cpp" />
+    <ClCompile Include="src\source\Control\Mui_EditBox.cpp" />
+    <ClCompile Include="src\source\Control\Mui_ImgBox.cpp" />
+    <ClCompile Include="src\source\Control\Mui_Label.cpp" />
+    <ClCompile Include="src\source\Control\Mui_ListBox.cpp" />
+    <ClCompile Include="src\source\Control\Mui_NavBar.cpp" />
+    <ClCompile Include="src\source\Control\Mui_Progress.cpp" />
+    <ClCompile Include="src\source\Control\Mui_Scroll.cpp" />
+    <ClCompile Include="src\source\Control\Mui_Slider.cpp" />
+    <ClCompile Include="src\source\FileSystem\DreamMoonRes.cpp" />
+    <ClCompile Include="src\source\FileSystem\Mui_FileSystem.cpp" />
+    <ClCompile Include="src\source\Manager\Mui_ControlMgr.cpp" />
+    <ClCompile Include="src\source\Manager\Mui_ResourceMgr.cpp" />
+    <ClCompile Include="src\source\Mui_Debug.cpp" />
+    <ClCompile Include="src\source\Mui_Error.cpp" />
+    <ClCompile Include="src\source\Mui_Helper.cpp" />
+    <ClCompile Include="src\source\Mui_Settings.cpp" />
+    <ClCompile Include="src\source\Mui_Base.cpp" />
+    <ClCompile Include="src\source\Render\Graphs\Mui_GdipBaseObj.cpp" />
+    <ClCompile Include="src\source\Render\Graphs\Mui_GdipRender.cpp" />
+    <ClCompile Include="src\source\Render\Graphs\Mui_Render.cpp" />
+    <ClCompile Include="src\source\Render\Graphs\Mui_RenderDef.cpp" />
+    <ClCompile Include="src\source\Render\Mui_RenderMgr.cpp" />
+    <ClCompile Include="src\source\Render\Node\Mui_Layout.cpp" />
+    <ClCompile Include="src\source\Render\Node\Mui_RenderNode.cpp" />
+    <ClCompile Include="src\source\Render\Node\Mui_UINodeBase.cpp" />
+    <ClCompile Include="src\source\ThirdParty\aes256.cpp" />
+    <ClCompile Include="src\source\ThirdParty\pugixml\pugixml.cpp" />
+    <ClCompile Include="src\source\Mui_XML.cpp" />
+    <ClCompile Include="src\source\User\Mui_Engine.cpp" />
+    <ClCompile Include="src\source\Window\Mui_BasicWnd.cpp" />
+    <ClCompile Include="src\source\Window\Mui_Windows.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="AttribName.txt" />
+    <Text Include="GeometryXML.txt" />
+    <Text Include="src\source\ThirdParty\licenseType.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{2f7059f0-b4a9-4e52-a553-eb0667880680}</ProjectGuid>
+    <RootNamespace>MiaoUI</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>MiaoUILite</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <SupportLTL>true</SupportLTL>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(SolutionDir)MiaoUI\library\</OutDir>
+    <IntDir>$(SolutionDir)MiaoUI\Cache\Debug\</IntDir>
+    <TargetName>$(ProjectName)32d</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)MiaoUI\library\</OutDir>
+    <IntDir>$(SolutionDir)MiaoUI\Cache\Release\</IntDir>
+    <TargetName>$(ProjectName)32</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(SolutionDir)MiaoUI\library\</OutDir>
+    <IntDir>$(SolutionDir)MiaoUI\Cache\Debug64\</IntDir>
+    <TargetName>$(ProjectName)64d</TargetName>
+    <EnableClangTidyCodeAnalysis>false</EnableClangTidyCodeAnalysis>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)MiaoUI\library\</OutDir>
+    <IntDir>$(SolutionDir)MiaoUI\Cache\Release64\</IntDir>
+    <TargetName>$(ProjectName)64</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>
+      </PrecompiledHeaderFile>
+      <LanguageStandard_C>Default</LanguageStandard_C>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)MiaoUI\src\include;$(SolutionDir)ThirdParty\libvorbis-1.3.7\include;$(SolutionDir)ThirdParty\libogg-1.3.5\include;$(SolutionDir)ThirdParty\cryptopp8.6;$(SolutionDir)ThirdParty\freetype-2.11.1\include;$(SolutionDir)ThirdParty\glew-2.2.0\include;$(SolutionDir)ThirdParty\ffmpeg-4.2.1\include;$(SolutionDir)ThirdParty\glm-0.9.8</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>
+      </SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <Lib>
+      <AdditionalLibraryDirectories>$(SolutionDir)ThirdParty\build\static\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>
+      </PrecompiledHeaderFile>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <LanguageStandard_C>Default</LanguageStandard_C>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <OmitFramePointers>true</OmitFramePointers>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
+      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)MiaoUI\src\include;$(SolutionDir)ThirdParty\libvorbis-1.3.7\include;$(SolutionDir)ThirdParty\libogg-1.3.5\include;$(SolutionDir)ThirdParty\cryptopp8.6;$(SolutionDir)ThirdParty\freetype-2.11.1\include;$(SolutionDir)ThirdParty\glew-2.2.0\include;$(SolutionDir)ThirdParty\ffmpeg-4.2.1\include;$(SolutionDir)ThirdParty\glm-0.9.8</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <Optimization>MaxSpeed</Optimization>
+    </ClCompile>
+    <Link>
+      <SubSystem>
+      </SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <Lib>
+      <AdditionalLibraryDirectories>$(SolutionDir)ThirdParty\build\static\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>
+      </PrecompiledHeaderFile>
+      <LanguageStandard_C>Default</LanguageStandard_C>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)MiaoUI\src\include;$(SolutionDir)ThirdParty\libvorbis-1.3.7\include;$(SolutionDir)ThirdParty\libogg-1.3.5\include;$(SolutionDir)ThirdParty\cryptopp8.6;$(SolutionDir)ThirdParty\freetype-2.11.1\include;$(SolutionDir)ThirdParty\glew-2.2.0\include;$(SolutionDir)ThirdParty\ffmpeg-4.2.1\include;$(SolutionDir)ThirdParty\glm-0.9.8</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>
+      </SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <Lib>
+      <AdditionalLibraryDirectories>$(SolutionDir)ThirdParty\build\static\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>
+      </PrecompiledHeaderFile>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <LanguageStandard_C>Default</LanguageStandard_C>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <OmitFramePointers>true</OmitFramePointers>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
+      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)MiaoUI\src\include;$(SolutionDir)ThirdParty\libvorbis-1.3.7\include;$(SolutionDir)ThirdParty\libogg-1.3.5\include;$(SolutionDir)ThirdParty\cryptopp8.6;$(SolutionDir)ThirdParty\freetype-2.11.1\include;$(SolutionDir)ThirdParty\glew-2.2.0\include;$(SolutionDir)ThirdParty\ffmpeg-4.2.1\include;$(SolutionDir)ThirdParty\glm-0.9.8</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <Optimization>MaxSpeed</Optimization>
+    </ClCompile>
+    <Link>
+      <SubSystem>
+      </SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <Lib>
+      <AdditionalLibraryDirectories>$(SolutionDir)ThirdParty\build\static\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="..\packages\YY.NuGet.Import.Helper.1.0.0.4\build\native\YY.NuGet.Import.Helper.targets" Condition="Exists('..\packages\YY.NuGet.Import.Helper.1.0.0.4\build\native\YY.NuGet.Import.Helper.targets')" />
+  </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>这台计算机上缺少此项目引用的 NuGet 程序包。使用“NuGet 程序包还原”可下载这些程序包。有关更多信息，请参见 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的文件是 {0}。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\YY.NuGet.Import.Helper.1.0.0.4\build\native\YY.NuGet.Import.Helper.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\YY.NuGet.Import.Helper.1.0.0.4\build\native\YY.NuGet.Import.Helper.props'))" />
+    <Error Condition="!Exists('..\packages\YY.NuGet.Import.Helper.1.0.0.4\build\native\YY.NuGet.Import.Helper.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\YY.NuGet.Import.Helper.1.0.0.4\build\native\YY.NuGet.Import.Helper.targets'))" />
+    <Error Condition="!Exists('..\packages\VC-LTL.5.0.9\build\native\VC-LTL.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\VC-LTL.5.0.9\build\native\VC-LTL.props'))" />
+  </Target>
+</Project>

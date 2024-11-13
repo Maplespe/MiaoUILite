@@ -1,0 +1,273 @@
+﻿/**
+ * Info: XML属性名列表
+ * Author: Maple
+ *
+ * date: 2021-11-9 Create
+ * @winmoes.com
+ */
+
+
+属性组：
+PropGroup
+	id //属性组ID文本
+	xxx = xxx //任意属性和属性值
+	....
+例：
+<PropGroup frame="10,20,300,300" text="SimpleText" id="test" />
+<UILabel prop="test" /> //控件将拥有属性组的属性 frame和text
+
+默认属性组:
+通过函数AddDefPropGroup可以添加全局默认属性组
+xml示例:
+
+<DefPropGroup control="UIButton" style="buttonLight" autoSize="false" textAlign="5" prop="ani" />
+<DefPropGroup control="UICheckBox" style="checkbox" prop="ani" />
+<DefPropGroup control="UISlider" trackInset="0,5,0,5" autoSize="false" style="strack" btnStyle="sbutton" />
+
+这为UIButton、UICheckBox、UISlider设置了默认属性
+使用CreateUIFromXML创建控件时 即使不写属性 也包含这些默认属性
+默认属性组中也可以引用普通属性组 实现属性的快速设置
+
+字符串表:
+可以通过函数AddStringList添加默认字符串列表
+
+设置控件属性时 以 '#' 开头后面跟字符串名称 即可引用此字符串
+
+例如 AddStringList(L"测试", L"目标字符串");
+创建控件 <UILabel text="#测试" />
+
+控件文本将为 "目标字符串"
+
+同时 如果使用SetStringValue函数修改字符串 那么与之关联的所有控件文本都将发生改变
+
+可以利用此特性实现多语言文本快速切换或者样式组的快速切换
+
+UIBitmap属性如果为普通名称则读取Image、Bitmap类型资源 如果为 "@svg:" 开头则读取SVGImg资源 可追加颜色替换参数 如 "@svg:testimg,0,0,0,255"或"@svg:testimg,@hex:FFFFFFFF"
+_m_color属性直接使用RGBA或RGB颜色值 如 "255,255,255,255" 如果要使用十六进制则写为 "@hex:FFFFFFFF" 格式为RRGGBBAA 或者RRGGBB 不写Alpha默认255或FF
+
+控件类型：
+
+xx - 代表参数数量 如 4x = 111,111,111,111
+bool - 代表文本只能是 true 或 false
+
+xxx : xxx : 代表还有属性继承自xxx控件
+
+style* - UIStyle指针 如果使用MuiXML 则为资源文件的名称
+UILabelConfig* - 代表字体样式结构体指针 如果使用MuiXML 为AddFontStyle所添加到字体列表的名称
+UIResource* - 代表资源结构体指针 如果使用MuiXML 为资源文件中的资源名称
+
+UIControl:
+	pos 2x								  - 控件位置 左 顶
+	size 2x								  - 控件尺寸 宽 高 可为百分比 代表使用父窗口的宽度百分比 例如 50%,50% 或者结尾单位为f 50f 代表使用FillMinus布局参数 即相当于 对于父窗口尺寸 - 50
+	frame 4x							  - 控件框架(如果使用此属性 则代替前两个属性) 左 顶 宽 高
+										  - 宽 高 可为百分比 代表使用父窗口的宽度百分比 例如 50%,50%
+	autoSize (bool)						  - 控件尺寸是否根据子内容自动计算 默认false 这将忽略size和frame的宽高属性值
+	minSize								  - 控件最小尺寸 即使开启autoSize 也会限制
+	maxSize								  - 控件最大尺寸 即使开启autoSize 也会限制 值为-1则无限制
+	padding 4x							  - 内边距
+	name								  - 控件名称
+	data (_m_param)						  - 用户自定义数据
+	visible (bool)						  - 是否可见
+	enable (bool)						  - 是否可用
+	alpha (_m_byte)						  - 不透明度 0-255
+	enableFocus (bool)					  - 是否接受焦点
+	msgFilter (bool)					  - 是否穿透消息
+	msgLgnore (bool)					  - 是否忽略消息
+	bgColor 4x							  - 背景颜色 R,G,B,A
+	frameColor 4x						  - 边框颜色 R,G,B,A
+	frameWidth (int)					  - 边框宽度 只能是数字
+	frameRound (float)					  - 圆角度
+	align (int)							  - 对齐方式 可以是枚举数字 如 1代表 UIAlignment_Block 也可以是字符串 如 Block、LinearV.....
+	dpiScale (bool)						  - 单独设置此控件是否支持DPI缩放 (如果窗口dpi缩放关闭 则此选项也不会有效)
+	scale 4x (float)					  - 设置控件缩放比例 X Y W H 默认 1.0,1.0,1.0,1.0
+	shadowColor (4x)					  - 阴影颜色
+	shadowOffset (2x)					  - 阴影偏移位置
+	shadowExtend (int)					  - 阴影扩展 px
+	shadowRadius (float)				  - 阴影模糊半径
+
+以下控件都具有UIControl的属性 控件名称排序按A-Z
+
+//该控件autoSize 默认 true
+UIButton: UILabel :
+	* style (UIStyle*)
+	* animate (bool)					  - 是否启用动画效果
+	* aniAlphaType (bool)				  - 动画效果方式 混合或覆盖
+	* inset (_m_rect_t<int>)			  - 内边距 仅autoSize=true 时才有效
+			
+//该控件autoSize 默认 true
+UICheckBox: UILabel :					  
+	* style (UIStyle*)
+	* isSel (bool)						  - 是否被选中
+	* allowClick (bool)					  - 是否可通过点击改变选中状态(否则只能手动设置isSel来控制是否选中)
+	* animate (bool)					  - 是否启用动画效果
+	* aniAlphaType (bool)				  - 动画效果方式 混合或覆盖
+	* textOffset (int)					  - 文本和图标之间的距离
+
+UIColorPicker:
+	* color 4x - RGBA颜色
+	* hsv 3x   - HSV颜色
+
+//该控件autoSize 默认 true
+UIComBox: UILabel
+	* style (UIStyle*)
+	* dropIcon (UIBitmap*)				  - 下拉列表图标
+	* dropIconXPos (int)				  - 下拉列表图标X偏移位置
+	* dropIconAutoPos (bool)			  - 自动计算下拉列表图标位置
+	* popTop (bool)						  - 向上弹出菜单
+	* menuHeight (int)					  - 弹出菜单高度(px)
+	* listShadowBlur (float)			  - 弹出列表阴影模糊度 默认6.f
+	* listShadowColor (_m_color) 4x		  - 弹出列表阴影颜色 默认RGBA(0,0,0,50)
+	* listShadowOffset (UIPoint) 2x		  - 弹出列表阴影偏移位置 x,y 默认 0,5
+	* listShadowExtend (int)			  - 弹出列表阴影扩展 默认0
+	* 列表属性:							   
+	* listStyle (UIStyle*)				  - 列表样式
+	* itemStyle (UIStyle*)				  - 列表项样式
+	* itemHeight (int)					  - 列表项高度(px)
+	* lineSpace (int)					  - 列表行间距(px)
+	* iFontStyle (UIListBox::ItemFont)	  - 列表项字体默认样式
+	* iFont	(std::wstring_view)			  - 列表项字体默认样式 - 字体名称
+	* iFontSize (_m_ushort)				  - 列表项字体默认样式 - 字体尺寸 默认12px
+	* iFontBold (bool)					  - 列表项字体默认样式 - 是否粗体
+	* iFontItalics (bool)				  - 列表项字体默认样式 - 是否斜体
+	* iFontUnderline (bool)				  - 列表项字体默认样式 - 是否下划线
+	* iFontStrikeout (bool)				  - 列表项字体默认样式 - 是否删除线
+	* iFontColor 4x						  - 列表项字体默认样式 - 字体颜色 默认RGBA(0,0,0,255)
+	* iTextAlign						  - 列表项字体默认样式 - 文本对齐方式 仅数字 为TextAlignment枚举值 默认LeftTop
+	* iFontCustom (_m_param)			  - 列表项字体默认样式 - 自定义字体集对象参数
+	* drawOffset (UIPoint) 2x			  - 列表内容绘制偏移参数(px)
+	* 列表滚动条属性:
+	* styleV (UIStyle*)					  - 垂直滚动条样式
+	* animate (bool)					  - 是否启用动画效果
+	* button (bool)						  - 是否显示滚动条上下调节按钮
+	* dragValueV (int)					  - 垂直滚动条当前值
+	* barWidth (int)					  - 滚动条宽度
+	* barMinHeight (int)				  - 滚动条按钮最小高(宽)度
+	* btnHeight (int)					  - 滚动条上下调节按钮高度
+	* inset (_m_rect_t<int>) 4x			  - 内边距
+										  
+UIEditBox: UIScroll						  
+	* style (UIStyle*)
+	* fontStyle (UILabel::Attribute*)	  - 字体样式
+	* text (std::wstring_view)			  - 当前文本
+	* multiline (bool)					  - 是否为多行编辑框
+	* password (bool)					  - 是否为密码输入模式
+	* passChar (wchar_t)				  - 密码遮掩符
+	* readOnly (bool)					  - 是否为只读模式
+	* isRich (bool)						  - 是否为富文本模式
+	* wordWrap (bool)					  - 是否自动折行
+	* wordAutoSel (bool)				  - 是否自动选择文本
+	* number (bool)						  - 是否为数字输入模式
+	* scroll (bool)						  - 是否有滚动条
+	* autoBar (bool)					  - 自动显示滚动条
+	* limitText (int)					  - 最大可输入文本数
+	* editAlign (_m_word)				  - 编辑框布局样式 ES_XXX
+	* caretColor (_m_color)				  - 指针颜色
+	* pholderText (std::wstring_view)	  - 占位符文本
+	* pholderTextColor (_m_color)		  - 占位符文本颜色
+
+//该控件autoSize 默认 true
+UIImgBox:
+	* img (UIBitmap*)
+	* imgStyle //图片对齐方式 仅数字 为UIImageBoxStyle的枚举值
+
+//该控件autoSize 默认 true
+UILabel:
+	* fontStyle (UILabel::Attribute*)
+	* text	(std::wstring_view）			  - 文本
+	* font	(std::wstring_view)			  - 字体名称
+	* fontSize (_m_ushort)				  - 字体尺寸 默认12px
+	* fontBold (bool)					  - 是否粗体
+	* fontItalics (bool)				  - 是否斜体
+	* fontUnderline (bool)				  - 是否下划线
+	* fontStrikeout (bool)				  - 是否删除线
+	* fontColor 4x						  - 字体颜色 默认RGBA(0,0,0,255)
+	* hyperlink (bool)					  - 是否为超链接
+	* url (std::wstring_view)			  - 超链接网址
+	* urlColor 4x						  - 超链接热点颜色 默认RGBA(167,226,54,255)
+	* textAlign							  - 文本对齐方式 仅数字 为TextAlign的枚举值组合 默认LeftTop
+	* fontCustom (_m_ptrv)				  - 自定义字体集对象参数
+	* shadowUse (bool)					  - 使用文本阴影效果
+	* shadowBlur (float)				  - 文本阴影模糊度 默认1.f
+	* shadowColor (_m_color) 4x			  - 文本阴影颜色 默认RGBA(0,0,0,255)
+	* shadowOffset (UIPoint) 2x			  - 文本阴影偏移位置 x,y 默认 1,1
+	* shadowLow (bool)					  - 是否使用低质量阴影 如果为true=没有模糊效果 blur属性无效
+
+UIListBox: UIScroll
+	* style (UIStyle*)
+	* itemStyle (UIStyle*)				  - 列表项样式
+	* itemHeight (int)					  - 列表项高度(px)
+	* lineSpace (int)					  - 列表行间距(px)
+	* iFontStyle (UIListBox::ItemFont)	  - 列表项字体默认样式
+	* iFont	(std::wstring_view)			  - 列表项字体默认样式 - 字体名称
+	* iFontSize (_m_ushort)				  - 列表项字体默认样式 - 字体尺寸 默认12px
+	* iFontBold (bool)					  - 列表项字体默认样式 - 是否粗体
+	* iFontItalics (bool)				  - 列表项字体默认样式 - 是否斜体
+	* iFontUnderline (bool)				  - 列表项字体默认样式 - 是否下划线
+	* iFontStrikeout (bool)				  - 列表项字体默认样式 - 是否删除线
+	* iFontColor 4x						  - 列表项字体默认样式 - 字体颜色 默认RGBA(0,0,0,255)
+	* iTextAlign						  - 列表项字体默认样式 - 文本对齐方式 仅数字 为TextAlignment枚举值 默认LeftTop
+	* iFontCustom (_m_param)			  - 列表项字体默认样式 - 自定义字体集对象参数
+	* drawOffset (UIPoint) 2x			  - 列表内容绘制偏移参数(px)
+	* allowRightSel (bool)				  - 允许右键点击也能选中列表项目
+
+//该控件autoSize 默认 true
+UINavBar:								  
+	* fontStyle (UILabel::Attribute*)	  - 字体样式
+	* font (std::wstring_view)			  - 字体
+	* fontColor (_m_color) 4x			  - 字体颜色 默认RGBA(120,120,120,255)
+	* fontHoverColor (_m_color) 4x		  - 字体颜色 Hover状态 默认RGBA(0,0,0,255)
+	* fontPressColor (_m_color) 4x		  - 字体颜色 按下状态 默认RGBA(150,150,150,255)
+	* fontSize (_m_ushort)				  - 字体尺寸 默认12px
+	* fontBold (bool)					  - 是否粗体
+	* fontItalics (bool)				  - 是否斜体
+	* fontUnderline (bool)				  - 是否下划线
+	* fontStrikeout (bool)				  - 是否删除线
+	* fontCustom (_m_ptrv)				  - 自定义字体集对象参数
+	* shadowUse (bool)					  - 使用文本阴影效果
+	* shadowBlur (float)				  - 文本阴影模糊度 默认1.f
+	* shadowColor (_m_color) 4x			  - 文本阴影颜色 默认RGBA(0,0,0,255)
+	* shadowOffset (UIPoint) 2x			  - 文本阴影偏移位置 x,y 默认 1,1
+	* shadowLow (bool)					  - 是否使用低质量阴影 如果为true=没有模糊效果 blur属性无效
+	* itemSpace (int)					  - item间距
+	* barSpace (int)					  - 横条和文字间距
+	* barHeight (int)					  - 横条高度 默认4px
+	* barAnitime (int)					  - 横条过渡动画时长(ms) 默认300ms
+	* barRound (float)					  - 横条圆角度 默认1.5f
+	* barColor (_m_color) 4x			  - 横条颜色
+			  
+UIProgressBar:							  
+	* style (UIStyle*)
+	* maxValue (int)					  - 最大值
+	* value (int)						  - 当前值
+	* leftShow (bool)					  - 如果非垂直 进度从左往右显示 (默认true)
+	* bottomShow (bool)					  - 如果非水平 进度从下往上显示 (默认true)
+										  
+UIScroll:								  
+	* styleV (UIStyle*)					  - 垂直滚动条样式
+	* styleH (UIStyle*)					  - 水平滚动条样式
+	* vertical (bool)					  - 显示垂直滚动条
+	* horizontal (bool)					  - 显示水平滚动条
+	* active (bool)						  - 始终显示滚动条(无效)
+	* animate (bool)					  - 是否启用动画效果
+	* button (bool)						  - 是否显示滚动条上下调节按钮
+	* range (UISize)					  - 滚动条最大可滚动区域
+	* rangeV (int)						  - 垂直滚动条最大可滚动区域
+	* rangeH (int)						  - 水平滚动条最大可滚动区域
+	* dragValue (UISize)				  - 滚动条当前值
+	* dragValueV (int)					  - 垂直滚动条当前值
+	* dragValueH (int)					  - 水平滚动条当前值
+	* barWidth (int)					  - 滚动条宽度
+	* barMinHeight (int)				  - 滚动条按钮最小高(宽)度
+	* btnHeight (int)					  - 滚动条上下调节按钮高度
+	* inset (_m_rect_t<int>)			  - 内边距
+
+UISlider:
+	* style (UIStyle*)
+	* btnStyle (UIStyle*)				  - 滑块按钮样式
+	* maxValue (int)					  - 最大值
+	* minValue (int)					  - 最小值
+	* value (int)						  - 当前值
+	* leftShow (bool)					  - 如果非垂直 进度从左往右显示 (默认true)
+	* bottomShow (bool)					  - 如果非水平 进度从下往上显示 (默认true)
+	* trackInset (_m_rect_t<int>) 4x	  - 轨道内边距
+	* btnSize (UISize) 2x				  - 拖拽按钮尺寸 0=自动计算

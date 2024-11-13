@@ -1,0 +1,322 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{288c03d6-d041-419e-b33d-61295165f800}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{7cac8021-7765-43ec-89c7-c92bcceb64bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Control">
+      <UniqueIdentifier>{ad1c4e68-a2e9-4b9b-8093-10df6432f96c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\FileSystem">
+      <UniqueIdentifier>{2967b425-5f6c-4215-b212-55d90fb1b6d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Render">
+      <UniqueIdentifier>{590f875b-eb7d-47e8-ad67-318673c74394}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Render\Graphs">
+      <UniqueIdentifier>{2003f39a-d6d7-4bd8-ac84-7066ab6788ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Window">
+      <UniqueIdentifier>{8d0e9cba-05b8-49da-bfab-8ff5fcde7393}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Control">
+      <UniqueIdentifier>{b3027ee6-4d1d-4856-b77c-bec05b7c2332}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\FileSystem">
+      <UniqueIdentifier>{757a08fc-930a-4c10-a193-f3af17ba680b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Render">
+      <UniqueIdentifier>{f2960082-167a-4f7b-9f25-5be08746562d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Window">
+      <UniqueIdentifier>{d0e525dc-1cee-414c-a619-d8fc13149c01}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Render\Graphs">
+      <UniqueIdentifier>{48809cc1-0a69-4c67-9098-5193f695f444}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty">
+      <UniqueIdentifier>{33819f89-b778-4c80-aadd-cadfce3a024b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\pugixml">
+      <UniqueIdentifier>{4476c774-471d-4a86-8310-cde82d196a1c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\license">
+      <UniqueIdentifier>{ff780d99-b91e-4b3d-a3bc-2f53fe0adbc7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Render\Node">
+      <UniqueIdentifier>{ba1db83f-ffc6-4734-8da7-1041adcf3d15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Render\Node">
+      <UniqueIdentifier>{1d3883b1-aaa8-409c-ab9c-42b0a799ff3f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\User">
+      <UniqueIdentifier>{2274f20f-90f1-4a5d-909b-61ed9238fd25}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\User">
+      <UniqueIdentifier>{7703827d-0cc6-48eb-aa06-42d5136e532d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Manager">
+      <UniqueIdentifier>{4003d539-05d7-4f64-8a09-625b372a86f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Manager">
+      <UniqueIdentifier>{5ebd8140-1bb7-42ba-a3ec-f8e1fa8cc4bf}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\include\Mui.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\Mui_Base.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\Mui_Settings.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\Mui_XML.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\Control\Mui_Button.h">
+      <Filter>头文件\Control</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\Control\Mui_CheckBox.h">
+      <Filter>头文件\Control</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\Control\Mui_ComBox.h">
+      <Filter>头文件\Control</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\Control\Mui_Control.h">
+      <Filter>头文件\Control</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\Control\Mui_EditBox.h">
+      <Filter>头文件\Control</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\Control\Mui_ImgBox.h">
+      <Filter>头文件\Control</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\Control\Mui_Label.h">
+      <Filter>头文件\Control</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\Control\Mui_ListBox.h">
+      <Filter>头文件\Control</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\Control\Mui_Progress.h">
+      <Filter>头文件\Control</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\Control\Mui_Scroll.h">
+      <Filter>头文件\Control</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\Control\Mui_Slider.h">
+      <Filter>头文件\Control</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\FileSystem\DreamMoonRes.h">
+      <Filter>头文件\FileSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\Render\Mui_RenderMgr.h">
+      <Filter>头文件\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\Render\Graphs\Mui_Render.h">
+      <Filter>头文件\Render\Graphs</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\Render\Graphs\Mui_RenderDef.h">
+      <Filter>头文件\Render\Graphs</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\Window\Mui_BasicWnd.h">
+      <Filter>头文件\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\Window\Mui_Windows.h">
+      <Filter>头文件\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="src\source\ThirdParty\pugixml\pugiconfig.hpp">
+      <Filter>ThirdParty\pugixml</Filter>
+    </ClInclude>
+    <ClInclude Include="src\source\ThirdParty\pugixml\pugixml.hpp">
+      <Filter>ThirdParty\pugixml</Filter>
+    </ClInclude>
+    <ClInclude Include="src\source\ThirdParty\aes256.h">
+      <Filter>ThirdParty</Filter>
+    </ClInclude>
+    <ClInclude Include="src\source\ThirdParty\picosha2.h">
+      <Filter>ThirdParty</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\Control\Mui_ColorPicker.h">
+      <Filter>头文件\Control</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\Control\Mui_NavBar.h">
+      <Filter>头文件\Control</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\Render\Node\Mui_RenderNode.h">
+      <Filter>头文件\Render\Node</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\Render\Node\Mui_UINodeBase.h">
+      <Filter>头文件\Render\Node</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\User\Mui_Engine.h">
+      <Filter>头文件\User</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\Mui_Debug.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\Mui_TypeDef.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\Render\Node\Mui_Layout.h">
+      <Filter>头文件\Render\Node</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\Manager\Mui_ControlMgr.h">
+      <Filter>头文件\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\Manager\Mui_ResourceMgr.h">
+      <Filter>头文件\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\Mui_Config.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\Mui_Helper.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\Mui_RAIIHelper.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\Mui_Framework.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\Mui_Error.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\Mui_DefUIStyle.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\FileSystem\Mui_FileSystem.h">
+      <Filter>头文件\FileSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\Render\Graphs\Mui_GdipBaseObj.h">
+      <Filter>头文件\Render\Graphs</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\Render\Graphs\Mui_GdipRender.h">
+      <Filter>头文件\Render\Graphs</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\source\Mui_Settings.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\source\Mui_Base.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\source\Mui_XML.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\source\Control\Mui_Button.cpp">
+      <Filter>源文件\Control</Filter>
+    </ClCompile>
+    <ClCompile Include="src\source\Control\Mui_CheckBox.cpp">
+      <Filter>源文件\Control</Filter>
+    </ClCompile>
+    <ClCompile Include="src\source\Control\Mui_ComBox.cpp">
+      <Filter>源文件\Control</Filter>
+    </ClCompile>
+    <ClCompile Include="src\source\Control\Mui_Control.cpp">
+      <Filter>源文件\Control</Filter>
+    </ClCompile>
+    <ClCompile Include="src\source\Control\Mui_EditBox.cpp">
+      <Filter>源文件\Control</Filter>
+    </ClCompile>
+    <ClCompile Include="src\source\Control\Mui_ImgBox.cpp">
+      <Filter>源文件\Control</Filter>
+    </ClCompile>
+    <ClCompile Include="src\source\Control\Mui_Label.cpp">
+      <Filter>源文件\Control</Filter>
+    </ClCompile>
+    <ClCompile Include="src\source\Control\Mui_ListBox.cpp">
+      <Filter>源文件\Control</Filter>
+    </ClCompile>
+    <ClCompile Include="src\source\Control\Mui_Progress.cpp">
+      <Filter>源文件\Control</Filter>
+    </ClCompile>
+    <ClCompile Include="src\source\Control\Mui_Scroll.cpp">
+      <Filter>源文件\Control</Filter>
+    </ClCompile>
+    <ClCompile Include="src\source\Control\Mui_Slider.cpp">
+      <Filter>源文件\Control</Filter>
+    </ClCompile>
+    <ClCompile Include="src\source\FileSystem\DreamMoonRes.cpp">
+      <Filter>源文件\FileSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="src\source\Window\Mui_Windows.cpp">
+      <Filter>源文件\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="src\source\Render\Graphs\Mui_Render.cpp">
+      <Filter>源文件\Render\Graphs</Filter>
+    </ClCompile>
+    <ClCompile Include="src\source\Render\Mui_RenderMgr.cpp">
+      <Filter>源文件\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="src\source\ThirdParty\pugixml\pugixml.cpp">
+      <Filter>ThirdParty\pugixml</Filter>
+    </ClCompile>
+    <ClCompile Include="src\source\ThirdParty\aes256.cpp">
+      <Filter>ThirdParty</Filter>
+    </ClCompile>
+    <ClCompile Include="src\source\Window\Mui_BasicWnd.cpp">
+      <Filter>源文件\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="src\source\Render\Graphs\Mui_RenderDef.cpp">
+      <Filter>源文件\Render\Graphs</Filter>
+    </ClCompile>
+    <ClCompile Include="src\source\Control\Mui_ColorPicker.cpp">
+      <Filter>源文件\Control</Filter>
+    </ClCompile>
+    <ClCompile Include="src\source\Control\Mui_NavBar.cpp">
+      <Filter>源文件\Control</Filter>
+    </ClCompile>
+    <ClCompile Include="src\source\Render\Node\Mui_RenderNode.cpp">
+      <Filter>源文件\Render\Node</Filter>
+    </ClCompile>
+    <ClCompile Include="src\source\Render\Node\Mui_UINodeBase.cpp">
+      <Filter>源文件\Render\Node</Filter>
+    </ClCompile>
+    <ClCompile Include="src\source\User\Mui_Engine.cpp">
+      <Filter>源文件\User</Filter>
+    </ClCompile>
+    <ClCompile Include="src\source\Mui_Debug.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\source\Render\Node\Mui_Layout.cpp">
+      <Filter>源文件\Render\Node</Filter>
+    </ClCompile>
+    <ClCompile Include="src\source\Manager\Mui_ControlMgr.cpp">
+      <Filter>源文件\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="src\source\Mui_Helper.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\source\Manager\Mui_ResourceMgr.cpp">
+      <Filter>源文件\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="src\source\Mui_Error.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\source\FileSystem\Mui_FileSystem.cpp">
+      <Filter>源文件\FileSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="src\source\Render\Graphs\Mui_GdipBaseObj.cpp">
+      <Filter>源文件\Render\Graphs</Filter>
+    </ClCompile>
+    <ClCompile Include="src\source\Render\Graphs\Mui_GdipRender.cpp">
+      <Filter>源文件\Render\Graphs</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="AttribName.txt" />
+    <Text Include="src\source\ThirdParty\licenseType.txt">
+      <Filter>ThirdParty\license</Filter>
+    </Text>
+    <Text Include="GeometryXML.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+</Project>
