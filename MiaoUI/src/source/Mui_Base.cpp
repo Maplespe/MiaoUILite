@@ -36,7 +36,7 @@ namespace Mui
 
 #pragma region _m_color
 
-	_m_color::_m_color(std::wstring_view hex, bool alpha) : argb(0)
+	_m_color::_m_color(std::wstring_view hex, bool _argb, bool alpha) : argb(0)
 	{
 		std::wstringstream ss;
 		ss << std::hex << std::setw(8) << hex;
@@ -44,20 +44,29 @@ namespace Mui
 		if (!alpha)
 		{
 			a = 255;
-			return;
+			if(!_argb) return;
 		}
-		std::swap(a, r);
-		std::swap(b, g);
+		if (!_argb)
+		{
+			std::swap(a, r);
+			std::swap(b, g);
+		}
+		else
+			std::swap(r, b);
 	}
 
-	std::wstring _m_color::HEX(bool alpha)
+	std::wstring _m_color::HEX(bool _argb, bool alpha)
 	{
 		std::wstringstream ss;
+
+		if(_argb && alpha)
+			ss << std::hex << std::setw(2) << std::setfill(L'0') << a;
+
 		ss << std::hex << std::setw(2) << std::setfill(L'0') << r
 			<< std::hex << std::setw(2) << std::setfill(L'0') << g
 			<< std::hex << std::setw(2) << std::setfill(L'0') << b;
 
-		if (alpha)
+		if (!_argb && alpha)
 			ss << std::hex << std::setw(2) << std::setfill(L'0') << a;
 
 		return ss.str();

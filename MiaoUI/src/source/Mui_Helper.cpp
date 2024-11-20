@@ -248,7 +248,7 @@ namespace Mui::Helper
 				if (i == 0 && str.find(L"@hex:") == 0)
 				{
 					str = str.substr(5);
-					return { str, str.length() == 8 };
+					return { str, false, str.length() == 8 };
 				}
 				rgba[i] = M_StoInt(str);
 			}

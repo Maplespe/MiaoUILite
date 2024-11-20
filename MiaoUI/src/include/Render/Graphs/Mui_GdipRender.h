@@ -225,7 +225,8 @@ namespace Mui::Render
 
 		//仅32位 位图支持
 		static BOOL MAlphaBlend(HDC hdcDest, int xDest, int yDest, int wDest, int hDest,
-			HDC hdcSrc, int xSrc, int ySrc, int wSrc, int hSrc, BYTE alpha, MRgn_GDIP* mRgn = nullptr);
+			HDC hdcSrc, int xSrc, int ySrc, int wSrc, int hSrc, BYTE alpha,
+			MRgn_GDIP* mRgn = nullptr, bool useLinearInterpolation = false);
 
 		MRgn_GDIP* GetMRgn();
 

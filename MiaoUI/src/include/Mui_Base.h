@@ -81,16 +81,17 @@ namespace Mui
 
 		operator _m_uint() const { return argb; }
 
-		/* 从十六进制文本创建颜色 RRGGBBAA 不包括#字符
+		/* 从十六进制文本创建颜色 不包括#字符
+		* @param argb - 是否为AARRGGBB 否则为RRGGBBAA
 		* @param alpha - 输入是否包含alpha值 否则为RRGGBB alpha值默认FF
 		*/
-		_m_color(std::wstring_view hex, bool alpha = true);
+		_m_color(std::wstring_view hex, bool argb = false, bool alpha = true);
 
-
-		/* 获取十六进制颜色文本 RRGGBBAA 不包括#字符
+		/* 获取十六进制颜色文本 不包括#字符
+		* @param argb - 是否为AARRGGBB 否则为RRGGBBAA
 		* @param alpha - 是否包含alpha值 否则为RRGGBB
 		*/
-		std::wstring HEX(bool alpha = true);
+		std::wstring HEX(bool argb, bool alpha = true);
 
 		//Alpha混合 返回混合后的颜色
 		static _m_byte AlphaBlend(_m_byte dst, _m_byte src);
@@ -392,6 +393,7 @@ namespace Mui
 		void Pause(bool now = false)
 		{
 			std::unique_lock lock(m_mutex);
+			if (!IsRuning()) return;
 			m_pause.store(true, std::memory_order_relaxed);
 			//线程内调用直接暂停
 			if (now && std::this_thread::get_id() == GetID())
@@ -405,6 +407,7 @@ namespace Mui
 		 */
 		void Pause(std::unique_lock<T>& lock)
 		{
+			if (!IsRuning()) return;
 			m_pause.store(true, std::memory_order_relaxed);
 			if (std::this_thread::get_id() == GetID())
 				Wait(lock);
@@ -439,9 +442,12 @@ namespace Mui
 		{
 			if (!m_thread) return;
 
+			auto lock = GetLock();
+
 			m_stop = true;
 			m_pause = false;
 			m_condition.notify_all();
+			lock.unlock();
 			m_thread->join();
 			delete m_thread;
 			m_thread = nullptr;

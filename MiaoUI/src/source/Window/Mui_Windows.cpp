@@ -263,6 +263,7 @@ namespace Mui::Window
 				//分层窗口更新
 				if (m_layerWnd)
 				{
+					rect = GetWindowRect();
 					POINT ptDest = { rect.left, rect.top };
 					POINT point = { 0,0 };
 					SIZE pSize = { WndWidth, WndHeight };

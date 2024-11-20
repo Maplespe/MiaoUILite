@@ -354,14 +354,18 @@ namespace Mui::Render
 		dest.bottom -= penWidth;
 
 		m_Graphics->SetSmoothingMode(SmoothingModeHighSpeed);
+		m_Graphics->SetPixelOffsetMode(PixelOffsetModeNone);
 		m_Graphics->DrawRectangle(static_cast<MPen_GDIP*>(pen)->m_pen, dest.left, dest.top, dest.GetWidth(), dest.GetHeight());
+		m_Graphics->SetPixelOffsetMode(PixelOffsetModeDefault);
 	}
 
 	void MRender_GDIP::DrawRoundedRect(_m_rect dest, float round, MPen* pen)
 	{
 		RAII::Mui_Ptr geometry = CreateRoundGeometry(dest, round);
 		m_Graphics->SetSmoothingMode(SmoothingModeHighQuality);
+		m_Graphics->SetPixelOffsetMode(PixelOffsetModeHighQuality);
 		m_Graphics->DrawPath(static_cast<MPen_GDIP*>(pen)->m_pen, geometry.cast<MGeometry_GDIP>()->m_geometry);
+		m_Graphics->SetPixelOffsetMode(PixelOffsetModeDefault);
 	}
 
 	void MRender_GDIP::FillRectangle(_m_rect dest, MBrush* brush)
@@ -383,14 +387,17 @@ namespace Mui::Render
 	{
 		RAII::Mui_Ptr geometry = CreateRoundGeometry(dest, round);
 		m_Graphics->SetSmoothingMode(SmoothingModeHighQuality);
+		m_Graphics->SetPixelOffsetMode(PixelOffsetModeHighQuality);
 		m_Graphics->FillPath(static_cast<MBrush_GDIP*>(brush)->m_brush, geometry.cast<MGeometry_GDIP>()->m_geometry);
+		m_Graphics->SetPixelOffsetMode(PixelOffsetModeDefault);
+		m_Graphics->SetSmoothingMode(SmoothingModeHighSpeed);
 	}
 
 	void MRender_GDIP::DrawTextLayout(MFont* font, _m_rect dest, MBrush* brush, TextAlign alignment)
 	{
 		m_Graphics->SetTextRenderingHint(TextRenderingHintAntiAlias);
 		m_Graphics->SetSmoothingMode(SmoothingModeHighQuality);
-		m_Graphics->SetInterpolationMode(InterpolationModeHighQualityBicubic);
+		m_Graphics->SetInterpolationMode(InterpolationModeHighQuality);
 		m_Graphics->SetPixelOffsetMode(PixelOffsetModeHighQuality);
 
 		StringFormat format;
@@ -416,6 +423,7 @@ namespace Mui::Render
 		m_Graphics->DrawString(fontObj->m_text.cstr(), -1,
 			fontObj->m_fontObj, RectF((float)dest.left, (float)dest.top, (float)dest.GetWidth(), (float)dest.GetHeight()),
 			&format, static_cast<MBrush_GDIP*>(brush)->m_brush);
+		m_Graphics->SetPixelOffsetMode(PixelOffsetModeDefault);
 	}
 
 	void MRender_GDIP::DrawBitmapEffects(MBitmap* img, MEffects* effect, _m_byte alpha, _m_rect dest, _m_rect src)
@@ -434,14 +442,21 @@ namespace Mui::Render
 
 	void MRender_GDIP::DrawEllipse(_m_rect dest, MPen* pen)
 	{
+		m_Graphics->SetSmoothingMode(SmoothingModeAntiAlias);
+		m_Graphics->SetPixelOffsetMode(PixelOffsetModeHighQuality);
 		m_Graphics->DrawEllipse(static_cast<MPen_GDIP*>(pen)->m_pen,
 			RectF((float)dest.left, (float)dest.top, (float)dest.GetWidth(), (float)dest.GetHeight()));
+		m_Graphics->SetPixelOffsetMode(PixelOffsetModeDefault);
 	}
 
 	void MRender_GDIP::FillEllipse(_m_rect dest, MBrush* brush)
 	{
+		m_Graphics->SetSmoothingMode(SmoothingModeAntiAlias);
+		m_Graphics->SetPixelOffsetMode(PixelOffsetModeHighQuality);
 		m_Graphics->FillEllipse(static_cast<MBrush_GDIP*>(brush)->m_brush,
 			RectF((float)dest.left, (float)dest.top, (float)dest.GetWidth(), (float)dest.GetHeight()));
+		m_Graphics->SetPixelOffsetMode(PixelOffsetModeDefault);
+		m_Graphics->SetSmoothingMode(SmoothingModeHighSpeed);
 	}
 
 	void MRender_GDIP::PushClipRect(_m_rect rect)
@@ -554,7 +569,7 @@ namespace Mui::Render
 	}
 
 	BOOL MRender_GDIP::MAlphaBlend(HDC hdcDest, int xDest, int yDest, int wDest, int hDest, HDC hdcSrc, int xSrc,
-		int ySrc, int wSrc, int hSrc, BYTE alpha, MRgn_GDIP* mRgn)
+		int ySrc, int wSrc, int hSrc, BYTE alpha, MRgn_GDIP* mRgn, bool useLinearInterpolation)
 	{
 		if(!hdcDest || !hdcSrc)
 			return FALSE;
@@ -593,21 +608,54 @@ namespace Mui::Render
 
 				if(mRgn)
 				{
-					_m_byte maskBit = mRgn->GetBit(xDest + x, yDestInv + y);
+					_m_byte maskBit = mRgn->GetBit(xDest + x, yDestInv + y + mRgn->m_align);
 					if(maskBit == 0)
 						continue;
 				}
 
-				BYTE* srcPixel = srcPixels + (srcY + ySrc) * srcBmpInfo.bmWidthBytes + (srcX + xSrc) * 4;
 				BYTE* dstPixel = dstPixels + (y + yDestInv) * dstBmpInfo.bmWidthBytes + (x + xDest) * 4;
+				if (useLinearInterpolation)
+				{
+					float srcXF = (float)x * scaleX;
+					float srcYF = (float)y * scaleY;
+					int srcX = static_cast<int>(srcXF);
+					int srcY = static_cast<int>(srcYF);
+					float u = srcXF - srcX;
+					float v = srcYF - srcY;
 
-				//Alpha 混合
-				BYTE srcAlpha = (srcPixel[3] * alpha) / 255;
-				BYTE invAlpha = 255 - srcAlpha;
-				dstPixel[0] = (srcPixel[0] * srcAlpha + dstPixel[0] * invAlpha) / 255;
-				dstPixel[1] = (srcPixel[1] * srcAlpha + dstPixel[1] * invAlpha) / 255;
-				dstPixel[2] = (srcPixel[2] * srcAlpha + dstPixel[2] * invAlpha) / 255;
-				dstPixel[3] = (srcAlpha + dstPixel[3] * invAlpha / 255);
+					BYTE* srcPixelTL = srcPixels + (srcY + ySrc) * srcBmpInfo.bmWidthBytes + (srcX + xSrc) * 4;
+					BYTE* srcPixelTR = srcPixelTL + 4;
+					BYTE* srcPixelBL = srcPixelTL + srcBmpInfo.bmWidthBytes;
+					BYTE* srcPixelBR = srcPixelBL + 4;
+
+					BYTE interpolatedPixel[4] = { 0 };
+					for (int c = 0; c < 4; ++c)
+					{
+						float top = srcPixelTL[c] * (1 - u) + srcPixelTR[c] * u;
+						float bottom = srcPixelBL[c] * (1 - u) + srcPixelBR[c] * u;
+						interpolatedPixel[c] = static_cast<BYTE>(top * (1 - v) + bottom * v);
+					}
+
+					BYTE srcAlpha = (interpolatedPixel[3] * alpha) / 255;
+					BYTE invAlpha = 255 - srcAlpha;
+
+					for (int c = 0; c < 3; ++c)
+					{
+						dstPixel[c] = (interpolatedPixel[c] * srcAlpha + dstPixel[c] * invAlpha) / 255;
+					}
+					dstPixel[3] = (srcAlpha + dstPixel[3] * invAlpha / 255);
+				}
+				else
+				{
+					BYTE* srcPixel = srcPixels + (srcY + ySrc) * srcBmpInfo.bmWidthBytes + (srcX + xSrc) * 4;
+					BYTE srcAlpha = (srcPixel[3] * alpha) / 255;
+					BYTE invAlpha = 255 - srcAlpha;
+					for (int c = 0; c < 3; ++c)
+					{
+						dstPixel[c] = (srcPixel[c] * srcAlpha + dstPixel[c] * invAlpha) / 255;
+					}
+					dstPixel[3] = (srcAlpha + dstPixel[3] * invAlpha / 255);
+				}
 			}
 		}
 		return TRUE;
@@ -633,7 +681,7 @@ namespace Mui::Render
 
 		auto rgn = GetMRgn();
 		MAlphaBlend(m_Canvas->m_hdc, dest.left, dest.top, dest.GetWidth(), dest.GetHeight(),
-			hdc, src.left, src.top, src.GetWidth(), src.GetHeight(), alpha, rgn);
+			hdc, src.left, src.top, src.GetWidth(), src.GetHeight(), alpha, rgn, highQuality);
 
 		//SelectClipRgn(m_Canvas->m_hdc, nullptr);
 

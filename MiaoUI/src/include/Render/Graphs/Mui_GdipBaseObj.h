@@ -239,12 +239,15 @@ namespace Mui::Render
 
 		_m_byte GetBit(int x, int y);
 
+		int GetExAlign() { return m_align; }
+
 	protected:
 		//A8 Bitmap
 		HBITMAP m_bitmap = nullptr;
 		HDC m_hdc = nullptr;
 		void* m_bits = nullptr;
 		UISize m_size;
+		int m_align = 0;
 
 		friend class MRender_GDIP;
 	};

@@ -302,7 +302,10 @@ namespace Mui::Render
 	MRgn_GDIP::MRgn_GDIP(int width, int height)
 	{
 		width = (width + 3) / 4 * 4;
-		height = (height + 3) / 4 * 4;
+		int nheight = (height + 3) / 4 * 4;
+
+		m_align = nheight - height;
+		height = nheight;
 
 		m_hdc = CreateCompatibleDC(nullptr);
 
