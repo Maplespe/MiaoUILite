@@ -62,7 +62,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
 	base->CenterWindow();
 	//base->ShowDebugRect(true);
-	//base->SetRenderMode(true);
+	base->SetRenderMode(true);
 
 	base->ShowWindow(true);
 

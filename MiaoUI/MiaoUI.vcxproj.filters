@@ -316,7 +316,4 @@
     </Text>
     <Text Include="GeometryXML.txt" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
 </Project>

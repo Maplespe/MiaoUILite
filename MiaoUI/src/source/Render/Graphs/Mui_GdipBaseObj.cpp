@@ -266,7 +266,6 @@ namespace Mui::Render
 		f.SetAlignment(StringAlignmentNear);
 		f.SetLineAlignment(StringAlignmentNear);
 		graphicsPathObj.AddString(m_text.cstr(), -1, &fontfamily, m_fontObj->GetStyle(), m_fontObj->GetSize(),Point(1,1), &f);
-
 		RectF rcBound;
 		graphicsPathObj.GetBounds(&rcBound);
 
@@ -309,16 +308,24 @@ namespace Mui::Render
 
 		m_hdc = CreateCompatibleDC(nullptr);
 
-		BITMAPINFO bmi = {};
+		auto* pbmi = (BITMAPINFO*)new BYTE[sizeof(BITMAPINFOHEADER) + sizeof(RGBQUAD) * 256];
+		BITMAPINFO& bmi = *pbmi;
 		bmi.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
 		bmi.bmiHeader.biWidth = width;
 		bmi.bmiHeader.biHeight = height;
 		bmi.bmiHeader.biPlanes = 1;
 		bmi.bmiHeader.biBitCount = 8;
 		bmi.bmiHeader.biCompression = BI_RGB;
-		bmi.bmiHeader.biSizeImage = width * height;
 
+		for (USHORT i = 0; i < 256; ++i)
+		{
+			bmi.bmiColors[i].rgbRed = (BYTE)i;
+			bmi.bmiColors[i].rgbGreen = (BYTE)i;
+			bmi.bmiColors[i].rgbBlue = (BYTE)i;
+			bmi.bmiColors[i].rgbReserved = 0;
+		}
 		m_bitmap = CreateDIBSection(m_hdc, &bmi, DIB_RGB_COLORS, &m_bits, nullptr, 0);
+		delete[] pbmi;
 
 		SelectObject(m_hdc, m_bitmap);
 

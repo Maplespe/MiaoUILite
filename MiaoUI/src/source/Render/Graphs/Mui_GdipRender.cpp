@@ -395,10 +395,10 @@ namespace Mui::Render
 
 	void MRender_GDIP::DrawTextLayout(MFont* font, _m_rect dest, MBrush* brush, TextAlign alignment)
 	{
-		m_Graphics->SetTextRenderingHint(TextRenderingHintAntiAlias);
+		//m_Graphics->SetTextRenderingHint(TextRenderingHintAntiAlias);
 		m_Graphics->SetSmoothingMode(SmoothingModeHighQuality);
 		m_Graphics->SetInterpolationMode(InterpolationModeHighQuality);
-		m_Graphics->SetPixelOffsetMode(PixelOffsetModeHighQuality);
+		m_Graphics->SetPixelOffsetMode(PixelOffsetModeNone);
 
 		StringFormat format;
 		if (alignment & TextAlign_Top)
@@ -614,6 +614,7 @@ namespace Mui::Render
 				}
 
 				BYTE* dstPixel = dstPixels + (y + yDestInv) * dstBmpInfo.bmWidthBytes + (x + xDest) * 4;
+				BYTE* srcPixel = srcPixels + (srcY + ySrc) * srcBmpInfo.bmWidthBytes + (srcX + xSrc) * 4;
 				if (useLinearInterpolation)
 				{
 					float srcXF = (float)x * scaleX;
@@ -623,15 +624,22 @@ namespace Mui::Render
 					float u = srcXF - srcX;
 					float v = srcYF - srcY;
 
-					BYTE* srcPixelTL = srcPixels + (srcY + ySrc) * srcBmpInfo.bmWidthBytes + (srcX + xSrc) * 4;
-					BYTE* srcPixelTR = srcPixelTL + 4;
-					BYTE* srcPixelBL = srcPixelTL + srcBmpInfo.bmWidthBytes;
-					BYTE* srcPixelBR = srcPixelBL + 4;
+					BYTE* srcPixelTR = srcPixel;
+					if (xSrc + srcX + 1 >= 0 && xSrc + srcX + 1 < srcBmpInfo.bmWidth)
+						srcPixelTR += 4;
+
+					BYTE* srcPixelBL = srcPixel;
+					if (ySrc + srcY + 1 >= 0 && ySrc + srcY + 1 < srcBmpInfo.bmHeight)
+						srcPixelBL += srcBmpInfo.bmWidthBytes;
+
+					BYTE* srcPixelBR = srcPixelBL;
+					if (xSrc + srcX + 1 >= 0 && xSrc + srcX + 1 < srcBmpInfo.bmWidth)
+						srcPixelBR += 4;
 
 					BYTE interpolatedPixel[4] = { 0 };
 					for (int c = 0; c < 4; ++c)
 					{
-						float top = srcPixelTL[c] * (1 - u) + srcPixelTR[c] * u;
+						float top = srcPixel[c] * (1 - u) + srcPixelTR[c] * u;
 						float bottom = srcPixelBL[c] * (1 - u) + srcPixelBR[c] * u;
 						interpolatedPixel[c] = static_cast<BYTE>(top * (1 - v) + bottom * v);
 					}
@@ -647,7 +655,6 @@ namespace Mui::Render
 				}
 				else
 				{
-					BYTE* srcPixel = srcPixels + (srcY + ySrc) * srcBmpInfo.bmWidthBytes + (srcX + xSrc) * 4;
 					BYTE srcAlpha = (srcPixel[3] * alpha) / 255;
 					BYTE invAlpha = 255 - srcAlpha;
 					for (int c = 0; c < 3; ++c)
