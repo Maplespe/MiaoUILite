@@ -271,6 +271,7 @@ namespace Mui::Render
 
 		m_metrics = { 0, 0, (int)round(rcBound.X + rcBound.Width),
 			(int)round(rcBound.Y + rcBound.Height) };
+		m_baseOffset = rcBound.Y - 3.f;
 	}
 
 	void MFont_GDIP::UpdateFont()

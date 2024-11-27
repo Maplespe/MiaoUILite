@@ -398,11 +398,11 @@ namespace Mui::Render
 		//m_Graphics->SetTextRenderingHint(TextRenderingHintAntiAlias);
 		m_Graphics->SetSmoothingMode(SmoothingModeHighQuality);
 		m_Graphics->SetInterpolationMode(InterpolationModeHighQuality);
-		m_Graphics->SetPixelOffsetMode(PixelOffsetModeNone);
+		m_Graphics->SetPixelOffsetMode(PixelOffsetModeHalf);
 
 		StringFormat format;
 		if (alignment & TextAlign_Top)
-			format.SetAlignment(StringAlignmentNear);
+			format.SetLineAlignment(StringAlignmentNear);
 		if (alignment & TextAlign_Left)
 			format.SetAlignment(StringAlignmentNear);
 		if (alignment & TextAlign_Center)
@@ -421,7 +421,7 @@ namespace Mui::Render
 
 		auto fontObj = static_cast<MFont_GDIP*>(font);
 		m_Graphics->DrawString(fontObj->m_text.cstr(), -1,
-			fontObj->m_fontObj, RectF((float)dest.left, (float)dest.top, (float)dest.GetWidth(), (float)dest.GetHeight()),
+			fontObj->m_fontObj, RectF((float)dest.left, (float)dest.top - fontObj->m_baseOffset, (float)dest.GetWidth(), (float)dest.GetHeight()),
 			&format, static_cast<MBrush_GDIP*>(brush)->m_brush);
 		m_Graphics->SetPixelOffsetMode(PixelOffsetModeDefault);
 	}

@@ -204,6 +204,7 @@ namespace Mui::Render
 		UIString m_font;
 		UIRect m_metrics;
 		_m_uint m_fontsize = 12;
+		float m_baseOffset = 0;
 
 		friend class MRender_GDIP;
 	};
